@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'cukesparse'
+Cukesparse.new.parse_options.build_command
