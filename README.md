@@ -1,4 +1,4 @@
 cukesparse
 ==========
 
-A simple command line parser to pass arguments into Cucumber
+A simple command line parser to pass default and custom arguments into Cucumber.
