@@ -14,7 +14,7 @@ Cukesparse parses command line arguments and sets default arguments from the con
       feature_order: ['features/featureOne', 'features/featureTwo', 'features/featureThree']  
       runtime_defaults:  
         environment: 'release'  
-        log_level: 'debug'  
+        log_level: 'debug'
         format: 'pretty'  
       defaults: ['--format html', '--out coverage/report.html', '-P -s']
 
