@@ -4,4 +4,4 @@ rvm:
   - 1.9.3
   - 1.9.2
 
-script: bundle exec rspec test/test_cukesparse.rb
+script: bundle exec rspec spec/test_cukesparse.rb

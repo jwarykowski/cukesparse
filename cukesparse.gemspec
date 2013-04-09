@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.email       = 'jonathan.chrisp@gmail.com'
   s.files       = ['lib/cukesparse.rb']
   s.license     = 'MIT'
-  s.test_file   = 'test/test_cukesparse.rb'
+  s.test_file   = 'spec/test_cukesparse.rb'
 end
