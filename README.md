@@ -26,7 +26,7 @@ Cukesparse would then collate and produce the following parameters hash:
 
     {:tags=>["--tags test"], :environment=>"ENVIRONMENT=release", :log_level=>"LOG_LEVEL=debug", :format=>"FORMAT=pretty"}
     
-As no `environment`, `log_level` or `format` arguments were passed the runtime defaults for the config/tasks.yml are used. The following command line output would be produced:
+As no `environment`, `log_level` or `format` arguments were passed the runtime defaults from the config/tasks.yml are used. The following command line output would be produced:
 
     bundle exec cucumber --require features/ features/featureOne features/featureTwo features/featureThree --tags test 
     ENVIRONMENT=release LOG_LEVEL=debug FORMAT=pretty --format html --out coverage/report.html -P -s
