@@ -5,3 +5,4 @@ gem 'rspec'
 gem 'clik'
 gem 'colored'
 gem 'cucumber'
+gem 'coveralls', require: false

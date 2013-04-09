@@ -1,6 +1,8 @@
 require 'cukesparse'
 require 'colored'
 require 'rspec'
+require 'coveralls'
+Coveralls.wear!
 
 describe "cukesparse" do
 	# Object
