@@ -57,7 +57,7 @@ describe "cukesparse" do
       @cukesparse.parameters.should have_key :name
     end
 
-    it "should have a tags parameter value of test" do
+    it "should have a name parameter value of test" do
       @cukesparse.parameters[:name].should eql '--name name_test'
     end
   end
@@ -74,8 +74,42 @@ describe "cukesparse" do
       @cukesparse.parameters.should have_key :name
     end
 
-    it "should have a tags parameter value of test" do
+    it "should have a name parameter value of test" do
       @cukesparse.parameters[:name].should eql '--name name_test'
+    end
+  end
+
+  context "when passed the -f parameter" do
+    before :all do
+      # Clear arguments as rspec passes in script path
+      ARGV = ['test_task', '-f', 'pretty']
+      @cukesparse = Cukesparse.new
+      @cukesparse.parse_options
+    end
+
+    it "should have a parameter of format" do
+      @cukesparse.parameters.should have_key :format
+    end
+
+    it "should have a tags parameter value of test" do
+      @cukesparse.parameters[:format].should eql '--format pretty'
+    end
+  end
+
+  context "when passed the --format parameter" do
+    before :all do
+      # Clear arguments as rspec passes in script path
+      ARGV = ['test_task', '--format', 'pretty']
+      @cukesparse = Cukesparse.new
+      @cukesparse.parse_options
+    end
+
+    it "should have a parameter of format" do
+      @cukesparse.parameters.should have_key :format
+    end
+
+    it "should have a tags parameter value of test" do
+      @cukesparse.parameters[:format].should eql '--format pretty'
     end
   end
 
