@@ -21,6 +21,7 @@ GEM
       multi_json (~> 1.3)
     mime-types (1.22)
     multi_json (1.7.2)
+    psych (2.0.0)
     rake (10.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
@@ -47,5 +48,6 @@ DEPENDENCIES
   colored
   coveralls
   cucumber
+  psych
   rake
   rspec

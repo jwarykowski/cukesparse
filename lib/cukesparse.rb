@@ -1,5 +1,5 @@
 require 'clik'
-require 'yaml'
+require 'psych'
 require 'colored'
 
 module Cukesparse
@@ -102,10 +102,10 @@ module Cukesparse
     # Loads the config file
     def load_config
       begin
-       @config = YAML.load_file(@config_file)
+       @config = Psych.load_file(@config_file)
       rescue Psych::SyntaxError
         abort 'Your tasks.yml did not parse as expected!'.red.underline
-      rescue Exception
+      rescue Errno::ENOENT
         abort 'Your tasks.yml file is missing!'.red.underline
       end
 
