@@ -2,7 +2,6 @@ require 'coveralls'
 Coveralls.wear!
 
 require 'cukesparse'
-require 'colored'
 require 'rspec'
 
 describe "cukesparse" do
