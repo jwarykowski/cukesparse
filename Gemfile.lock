@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cukesparse (1.0.5)
+    cukesparse (1.0.6)
       clik (~> 0.1.0)
       colored (~> 1.2)
       cucumber (~> 1.2.5)

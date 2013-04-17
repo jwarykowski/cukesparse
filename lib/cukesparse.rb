@@ -104,9 +104,9 @@ module Cukesparse
       begin
        @config = Psych.load_file(@config_file)
       rescue Psych::SyntaxError
-        abort 'Your tasks.yml did not parse as expected!'.red.underline
+        abort 'Your tasks file did not parse as expected!'.red.underline
       rescue Errno::ENOENT
-        abort 'Your tasks.yml file is missing!'.red.underline
+        abort 'Your tasks file is missing!'.red.underline
       end
 
       self
