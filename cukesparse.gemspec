@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'cukesparse'
-  s.version     = '1.0.7'
+  s.version     = '1.0.8'
   s.date        = '2013-04-18'
   s.summary     = 'Cukesparse - cucumber command line parser'
   s.description = 'A simple command line parser to pass arguments into Cucumber'
@@ -16,7 +16,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'clik', '~> 0.1.0'
   s.add_runtime_dependency 'colored', '~> 1.2'
   s.add_runtime_dependency 'cucumber', '~> 1.2.5'
-  s.add_runtime_dependency 'psych', '~> 1.3.4'
 
   s.files         = `git ls-files`.split("\n")
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
