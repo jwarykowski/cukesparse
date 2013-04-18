@@ -1,5 +1,4 @@
 require 'clik'
-require 'psych'
 require 'colored'
 
 module Cukesparse
