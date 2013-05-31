@@ -3,5 +3,4 @@ test_task
  runtime_defaults:
   environment
   log_level: 'debug'
-  format
  defaults: ['--format html', '--out coverage

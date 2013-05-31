@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'cukesparse'
-  s.version     = '1.0.8'
-  s.date        = '2013-04-18'
+  s.version     = '1.0.9'
+  s.date        = '2013-05-31'
   s.summary     = 'Cukesparse - cucumber command line parser'
   s.description = 'A simple command line parser to pass arguments into Cucumber'
   s.author      = 'Jonathan Chrisp'

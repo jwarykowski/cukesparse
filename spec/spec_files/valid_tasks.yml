@@ -3,17 +3,15 @@ test_task:
  runtime_defaults:
   environment: 'release'
   log_level: 'debug'
-  format: 'pretty'
- defaults: ['--format html', '--out coverage/report.html', '-P -s']
+ defaults: ['--format html', '--out coverage/report.html', '--format pretty', '-P -s']
 
 test_task1:
  feature_order: ['features/featureOne', 'features/featureTwo', 'features/featureThree']
  runtime_defaults:
   environment: 'release'
   log_level: 'debug'
-  format: 'pretty'
- defaults: ['--format html', '--out coverage/report.html', '-P -s']
+ defaults: ['--format html', '--out coverage/report.html', '--format pretty', '-P -s']
 
 no_runtime_defaults:
  feature_order: ['features/featureOne', 'features/featureTwo', 'features/featureThree']
- defaults: ['--format html', '--out coverage/report.html', '-P -s']
+ defaults: ['--format html', '--out coverage/report.html', '--format pretty', '-P -s']

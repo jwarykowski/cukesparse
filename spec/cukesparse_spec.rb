@@ -708,13 +708,11 @@ describe "cukesparse" do
     it "should have runtime default parameters" do
       Cukesparse.parameters.should have_key :environment
       Cukesparse.parameters.should have_key :log_level
-      Cukesparse.parameters.should have_key :format
     end
 
     it "should have the expected default runtime parameter values" do
       Cukesparse.parameters[:environment].should eql 'ENVIRONMENT=release'
       Cukesparse.parameters[:log_level].should eql 'LOG_LEVEL=debug'
-      Cukesparse.parameters[:format].should eql 'FORMAT=pretty'
     end
   end
 

@@ -3,5 +3,4 @@ test_task:
  runtime_defaults:
   environment: 'release'
   log_level: 'debug'
-  format: 'pretty'
- defaults: ['--format html', '--out coverage/report.html', '-P -s']
+ defaults: ['--format html', '--out coverage/report.html', '--format pretty', '-P -s']
