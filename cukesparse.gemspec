@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'cukesparse'
-  s.version     = '1.0.9'
+  s.version     = '1.0.10'
   s.date        = '2013-05-31'
   s.summary     = 'Cukesparse - cucumber command line parser'
   s.description = 'A simple command line parser to pass arguments into Cucumber'
@@ -10,8 +10,8 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/jonathanchrisp/cukesparse'
   s.required_ruby_version = ">= 1.9.2"
 
-  s.add_development_dependency 'rspec', '~> 2.13.0'
-  s.add_development_dependency 'rake', '~> 10.0.4'
+  s.add_development_dependency 'rspec', '~> 2.13.0' 
+  s.add_development_dependency 'pry', '~> 0.9.12.2'
 
   s.add_runtime_dependency 'clik', '~> 0.1.0'
   s.add_runtime_dependency 'colored', '~> 1.2'

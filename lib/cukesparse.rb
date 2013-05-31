@@ -1,6 +1,7 @@
 require 'clik'
 require 'colored'
 require 'yaml'
+require 'pry'
 YAML::ENGINE.yamler = 'psych'
 
 module Cukesparse
@@ -76,7 +77,7 @@ module Cukesparse
       unless @task.empty? && @parameters.empty?
         @command.push 'bundle exec cucumber'
         @command.push '--require features/'
-        @command.push task['feature_order'].join(' ')
+        #@command.push task['feature_order'].join(' ')
         @parameters.each { |k,v| @command.push(v) }
         @command.push task['defaults'].join(' ')
       end
