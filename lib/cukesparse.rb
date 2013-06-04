@@ -86,6 +86,7 @@ module Cukesparse
         debug
       else
         system @command.join(' ')
+        exit $?.exitstatus
       end
     end
 
