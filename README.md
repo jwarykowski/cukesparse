@@ -46,7 +46,6 @@ Cukesparse parses command line arguments and sets default arguments from the con
 You can have many highlevel tasks defined within your config/tasks.yml file. In the above example we only have the task `test_task`. Please note that the screen and position config options will set screenwidth/screenheight or xposition/yposition parameters. You should use screen/position or define the individual options only within the config file!
 
 ## Lets get it running!
-
 Lets say we have the following simple config file options defined:
 
     test_task:
@@ -70,6 +69,9 @@ As no `environment`, `log_level` arguments were passed the runtime defaults from
 
     bundle exec cucumber --require features/ features/featureOne features/featureTwo features/featureThree --tags test
     ENVIRONMENT=release LOG_LEVEL=debug FORMAT=pretty --format html --out coverage/report.html -P -s
+
+## See tasks from CLI
+If you need to view the tasks within config file from the command line just type: `cukesparse tasks`
 
 ## Parameters
 Cukesparse accepts the following command line arguments:
