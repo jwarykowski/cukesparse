@@ -18,6 +18,106 @@ module Cukesparse
       ARGV
     end
 
+    # Add multiple options to key
+    #
+    # @param [Symbol] key the key to store in options
+    # @param [String] val the arguments passed in for key
+    def add_multiple key, val
+      case val
+      when Array
+        val.each do |v|
+          (@parameters[key] ||= []).push '--' + key.to_s + ' ' + v.to_s
+        end
+      else
+        (@parameters[key] ||= []).push '--' + key.to_s + ' ' + val.to_s
+      end
+    end
+
+    # Executes cukesparse by checking arguments passed
+    def execute
+      # Check if no arguments
+      if argv.empty?
+        puts 'Cukesparse - a simple command line parser to pass arguments into Cucumber!'.yellow
+        return
+      end
+
+      # Determine argument passed
+      case argv.dup.shift
+      when 'tasks'
+        load_config
+        puts "You have the following tasks within your config file: #{@config.keys.join(', ')}".yellow
+        return
+      else
+        load_config.parse_argv.build_command
+      end
+    end
+
+    # Builds the command line string
+    def build_command
+      check_for_task
+      check_for_parameters
+      set_cucumber_defaults
+      set_runtime_defaults
+
+      unless @task.empty? && @parameters.empty?
+        @command.push 'bundle exec cucumber'
+        @command.push '--require features/'
+        @command.push task['feature_order'].join(' ')
+        @parameters.each { |k,v| @command.push(v) }
+        @command.push task['defaults'].join(' ')
+      end
+
+      if @parameters.has_key? :debug
+        debug
+      else
+        system @command.join(' ')
+        exit $?.exitstatus
+      end
+    end
+
+    # Checks for task in arguments
+    def check_for_task
+      task = argv & @config.keys
+      if task.empty?
+        abort 'ERROR: No task was passed to cukesparse!'.red.underline
+      elsif task.length > 1
+        puts 'WARN: Multiple tasks have been passed!'.yellow
+      else
+        @task = @config[task[0]]
+      end
+    end
+
+    # Checks parameters and returns boolean
+    def check_for_parameters
+      unless @parameters.any?
+        puts 'WARN: No parameters passed to cukesparse'.yellow
+      end
+    end
+
+    # Outputs the debug information
+    def debug
+      puts 'DEBUG: Outputting ARGV passed'.yellow
+      puts argv.inspect
+      puts 'DEBUG: Outputting parsed config file'.yellow
+      puts @config.inspect
+      puts 'DEBUG: Outputting parameters created'.yellow
+      puts @parameters.inspect
+      puts 'DEBUG: Outputting commandc created'.yellow
+      puts @command.join(' ')
+    end
+
+    # Loads the config file
+    def load_config
+      begin
+       @config = YAML.load_file @config_file
+      rescue Psych::SyntaxError
+        abort 'Your tasks file did not parse as expected!'.red.underline
+      rescue Errno::ENOENT
+        abort 'Your tasks file is missing!'.red.underline
+      end
+      self
+    end
+
     # Parses the options passed via command line
     def parse_argv
       begin
@@ -67,72 +167,6 @@ module Cukesparse
       end
     end
 
-    # Builds the command line string
-    def build_command
-      check_for_task
-      check_for_parameters
-      set_cucumber_defaults
-      set_runtime_defaults
-
-      unless @task.empty? && @parameters.empty?
-        @command.push 'bundle exec cucumber'
-        @command.push '--require features/'
-        @command.push task['feature_order'].join(' ')
-        @parameters.each { |k,v| @command.push(v) }
-        @command.push task['defaults'].join(' ')
-      end
-
-      if @parameters.has_key? :debug
-        debug
-      else
-        system @command.join(' ')
-        exit $?.exitstatus
-      end
-    end
-
-    # Outputs the debug information
-    def debug
-      puts 'DEBUG: Outputting ARGV passed'.yellow
-      puts argv.inspect
-      puts 'DEBUG: Outputting parsed config file'.yellow
-      puts @config.inspect
-      puts 'DEBUG: Outputting parameters created'.yellow
-      puts @parameters.inspect
-      puts 'DEBUG: Outputting commandc created'.yellow
-      puts @command.join(' ')
-    end
-
-    # Loads the config file
-    def load_config
-      begin
-       @config = YAML.load_file @config_file
-      rescue Psych::SyntaxError
-        abort 'Your tasks file did not parse as expected!'.red.underline
-      rescue Errno::ENOENT
-        abort 'Your tasks file is missing!'.red.underline
-      end
-      self
-    end
-
-    # Checks for task in arguments
-    def check_for_task
-      task = argv & @config.keys
-      if task.empty?
-        abort 'ERROR: No task was passed to cukesparse!'.red.underline
-      elsif task.length > 1
-        puts 'WARN: Multiple tasks have been passed!'.yellow
-      else
-        @task = @config[task[0]]
-      end
-    end
-
-    # Checks parameters and returns boolean
-    def check_for_parameters
-      unless @parameters.any?
-        puts 'WARN: No parameters passed to cukesparse'.yellow
-      end
-    end
-
     # Updates parameters based on config runtime defaults
     def set_runtime_defaults
       if @task.has_key? 'runtime_defaults'
@@ -176,21 +210,6 @@ module Cukesparse
         end
       else
         puts 'WARN: The task has no cucumber defaults!'.yellow
-      end
-    end
-
-    # Add multiple options to key
-    #
-    # @param [Symbol] key the key to store in options
-    # @param [String] val the arguments passed in for key
-    def add_multiple key, val
-      case val
-      when Array
-        val.each do |v|
-          (@parameters[key] ||= []).push '--' + key.to_s + ' ' + v.to_s
-        end
-      else
-        (@parameters[key] ||= []).push '--' + key.to_s + ' ' + val.to_s
       end
     end
 

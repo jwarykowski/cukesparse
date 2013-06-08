@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
 require 'cukesparse'
-Cukesparse.load_config.parse_argv.build_command
+require 'colored'
+
+Cukesparse.execute
