@@ -4,10 +4,10 @@
 
 #cukesparse
 
-A simple command line parser to pass default and custom arguments into Cucumber.
+A simple command line parser to pass default and custom arguments into Cucumber with the power to define these as tasks in a config/tasks.yml file!
 
 ## Getting Started
-Cukesparse parses command line arguments and sets default arguments from the config/task.yml file. For example please see the example config task below:
+Cukesparse parses command line arguments and sets default arguments from the config/task.yml file. For example please see the full list of options within the example config below:
 
     test_task:
      feature_order: ['features/featureOne', 'features/featureTwo', 'features/featureThree']
@@ -43,7 +43,7 @@ Cukesparse parses command line arguments and sets default arguments from the con
      # Will always be added to end of of the system command
      defaults: ['--format html', '--out report.html', '-P -s']
 
-Please note that the screen and position config options will set screenwidth/screenheight or xposition/yposition parameters. You should use screen/position or define the individual options only within the config file!
+You can have many highlevel tasks defined within your config/tasks.yml file. In the above example we only have the task `test_task`. Please note that the screen and position config options will set screenwidth/screenheight or xposition/yposition parameters. You should use screen/position or define the individual options only within the config file!
 
 ## Lets get it running!
 
@@ -84,7 +84,7 @@ Cukesparse accepts the following command line arguments:
     '-g --guess'
     '-x --expand'
 
-### Custom options
+### Runtime options
 All arguments below have been setup for a custom project but are useful.
 
 ### Global options
