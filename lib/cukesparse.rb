@@ -5,7 +5,6 @@ require 'pry'
 YAML::ENGINE.yamler = 'psych'
 
 module Cukesparse
-
   class << self
     attr_accessor :config_file, :config, :task, :parameters, :command
 
@@ -25,7 +24,7 @@ module Cukesparse
         cli argv,
         # Cucumber options
         '-t'            => lambda{ |t| add_multiple(:tags, t) },
-        '-n --name'     => lambda{ |n| @parameters[:name] = "--name #{n}" },
+        '-n --name'     => lambda{ |n| add_multiple(:name, n) },
         '-f --format'   => ->(f){ @parameters[:format]    = "--format #{f}" },
         '-d --dry-run'  => ->{ @parameters[:dry_run]      = "--dry-run" },
         '-v --verbose'  => ->{ @parameters[:verbose]      = "--verbose" },
@@ -72,12 +71,13 @@ module Cukesparse
     def build_command
       check_for_task
       check_for_parameters
+      set_cucumber_defaults
       set_runtime_defaults
 
       unless @task.empty? && @parameters.empty?
         @command.push 'bundle exec cucumber'
         @command.push '--require features/'
-        #@command.push task['feature_order'].join(' ')
+        @command.push task['feature_order'].join(' ')
         @parameters.each { |k,v| @command.push(v) }
         @command.push task['defaults'].join(' ')
       end
@@ -98,32 +98,31 @@ module Cukesparse
       puts @config.inspect
       puts 'DEBUG: Outputting parameters created'.yellow
       puts @parameters.inspect
-      puts 'DEBUG: Outputting command line created'.yellow
+      puts 'DEBUG: Outputting commandc created'.yellow
       puts @command.join(' ')
     end
 
     # Loads the config file
     def load_config
       begin
-       @config = YAML.load_file(@config_file)
+       @config = YAML.load_file @config_file
       rescue Psych::SyntaxError
         abort 'Your tasks file did not parse as expected!'.red.underline
       rescue Errno::ENOENT
         abort 'Your tasks file is missing!'.red.underline
       end
-
       self
     end
 
     # Checks for task in arguments
     def check_for_task
-      any_task = argv & @config.keys
-      if any_task.empty?
+      task = argv & @config.keys
+      if task.empty?
         abort 'ERROR: No task was passed to cukesparse!'.red.underline
-      elsif any_task.length > 1
-        abort 'ERROR: Multiple tasks have been passed!'.red.underline
+      elsif task.length > 1
+        puts 'WARN: Multiple tasks have been passed!'.yellow
       else
-        @task = @config[any_task[0]]
+        @task = @config[task[0]]
       end
     end
 
@@ -136,10 +135,15 @@ module Cukesparse
 
     # Updates parameters based on config runtime defaults
     def set_runtime_defaults
-      if @task.has_key?('runtime_defaults')
-        @task['runtime_defaults'].each do |key, value|
-          unless @parameters.has_key? key.to_sym
-            @parameters[key.to_sym] = key.upcase + '=' + value.to_s
+      if @task.has_key? 'runtime_defaults'
+        @task['runtime_defaults'].each do |key, val|
+          case key.to_sym
+          when :screen, :position
+            split_parameters(val, key.to_sym)
+          else
+            unless @parameters.has_key? key.to_sym
+              @parameters[key.to_sym] = key.upcase + '=' + val.to_s
+            end
           end
         end
       else
@@ -147,20 +151,55 @@ module Cukesparse
       end
     end
 
+    # Updates parameters based on config cucumber defaults
+    def set_cucumber_defaults
+      if @task.has_key? 'cucumber_defaults'
+        @task['cucumber_defaults'].each do |key, val|
+          case key.to_sym
+          when :tags, :name
+            add_multiple key.to_sym, val
+          when :format
+            unless @parameters.has_key? key.to_sym
+              @parameters[key.to_sym] = '--' + key.downcase + ' ' + val.to_s
+            end
+          when :strict, :verbose, :guess, :expand
+            unless @parameters.has_key? key.to_sym && @parameters[key.to_sym] == true
+              @parameters[key.to_sym] = '--' + key.downcase
+            end
+          when :dry_run
+            unless @parameters.has_key? key.to_sym && @parameters[key.to_sym] == true
+              @parameters[key.to_sym] = '--dry-run'
+            end
+          else
+           puts 'WARN: The cucumber default ' + key.to_s + ' isn\'t a known option!'.yellow
+          end
+        end
+      else
+        puts 'WARN: The task has no cucumber defaults!'.yellow
+      end
+    end
+
     # Add multiple options to key
     #
     # @param [Symbol] key the key to store in options
     # @param [String] val the arguments passed in for key
-    def add_multiple(key, val)
-      (@parameters[key] ||= []).push('--' + key.to_s + ' ' + val)
+    def add_multiple key, val
+      case val
+      when Array
+        val.each do |v|
+          (@parameters[key] ||= []).push '--' + key.to_s + ' ' + v.to_s
+        end
+      else
+        (@parameters[key] ||= []).push '--' + key.to_s + ' ' + val.to_s
+      end
     end
 
     # Splits parameters passed
     #
     # @param [String] params the parameters passed
     # @param [Symbol] sym the symbol passed
-    def split_parameters(params, sym)
-      params = params.split(',')
+    def split_parameters params, sym
+      params = params.split '/'
       if params.length == 1
         abort "ERROR: You have not passed enough parameters in the #{sym.to_s} command line argument!".red.underline
       elsif params.length > 2
@@ -169,9 +208,11 @@ module Cukesparse
 
       case sym
       when :screen
-        @parameters[sym] = "SCREENWIDTH=#{params[0]} SCREENHEIGHT=#{params[1]}"
+        @parameters[:screenwidth]  = "SCREENWIDTH=#{params[0]}"
+        @parameters[:screenheight] = "SCREENHEIGHT=#{params[1]}"
       when :position
-        @parameters[sym] = "XPOSITION=#{params[0]} YPOSITION=#{params[1]}"
+        @parameters[:xposition] = "XPOSITION=#{params[0]}"
+        @parameters[:yposition] = "YPOSITION=#{params[1]}"
       end
     end
   end

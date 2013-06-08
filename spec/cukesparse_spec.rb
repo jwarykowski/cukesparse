@@ -64,7 +64,7 @@ describe "cukesparse" do
     end
 
     it "should have a name parameter value of test" do
-      Cukesparse.parameters[:name].should eql '--name name_test'
+      Cukesparse.parameters[:name].should eql ['--name name_test']
     end
   end
 
@@ -81,7 +81,7 @@ describe "cukesparse" do
     end
 
     it "should have a name parameter value of test" do
-      Cukesparse.parameters[:name].should eql '--name name_test'
+      Cukesparse.parameters[:name].should eql ['--name name_test']
     end
   end
 
@@ -530,34 +530,50 @@ describe "cukesparse" do
   context "when passed the --screen parameter" do
     before :all do
       # Clear arguments as rspec passes in script path
-      ARGV.push('test_task', '--screen', '1280,1024')
+      ARGV.push('test_task', '--screen', '1280/1024')
       Cukesparse.parameters = {}
       Cukesparse.parse_argv
     end
 
-    it "should have a parameter of screen" do
-      Cukesparse.parameters.should have_key :screen
+    it "should have a parameter of screenwidth" do
+      Cukesparse.parameters.should have_key :screenwidth
     end
 
-    it "should have a screen parameter value of SCREENWIDTH=1280 SCREENHEIGHT=1024" do
-      Cukesparse.parameters[:screen].should eql 'SCREENWIDTH=1280 SCREENHEIGHT=1024'
+    it "should have a parameter of screenheight" do
+      Cukesparse.parameters.should have_key :screenheight
+    end
+
+    it "should have a screenwidth parameter value of SCREENWIDTH=1280" do
+      Cukesparse.parameters[:screenwidth].should eql 'SCREENWIDTH=1280'
+    end
+
+    it "should have a screenheight parameter value of SCREENHEIGHT=1024" do
+      Cukesparse.parameters[:screenheight].should eql 'SCREENHEIGHT=1024'
     end
   end
 
   context "when passed the --position parameter" do
     before :all do
       # Clear arguments as rspec passes in script path
-      ARGV.push('test_task', '--position', '0,0')
+      ARGV.push('test_task', '--position', '0/0')
       Cukesparse.parameters = {}
       Cukesparse.parse_argv
     end
 
-    it "should have a parameter of position" do
-      Cukesparse.parameters.should have_key :position
+    it "should have a parameter of xposition" do
+      Cukesparse.parameters.should have_key :xposition
     end
 
-    it "should have a position parameter value of XPOSITION=0 YPOSITION=0" do
-      Cukesparse.parameters[:position].should eql 'XPOSITION=0 YPOSITION=0'
+    it "should have a parameter of yposition" do
+      Cukesparse.parameters.should have_key :yposition
+    end
+
+    it "should have a xposition parameter value of XPOSITION=0" do
+      Cukesparse.parameters[:xposition].should eql 'XPOSITION=0'
+    end
+
+    it "should have a yposition parameter value of YPOSITION=0" do
+      Cukesparse.parameters[:yposition].should eql 'YPOSITION=0'
     end
   end
 
@@ -708,37 +724,121 @@ describe "cukesparse" do
     it "should have runtime default parameters" do
       Cukesparse.parameters.should have_key :environment
       Cukesparse.parameters.should have_key :log_level
+      Cukesparse.parameters.should have_key :cleanup
+      Cukesparse.parameters.should have_key :database
+      Cukesparse.parameters.should have_key :jenkins
+      Cukesparse.parameters.should have_key :retries
+      Cukesparse.parameters.should have_key :timeout
+      Cukesparse.parameters.should have_key :screenwidth
+      Cukesparse.parameters.should have_key :screenheight
+      Cukesparse.parameters.should have_key :xposition
+      Cukesparse.parameters.should have_key :yposition
+      Cukesparse.parameters.should have_key :highlight
     end
 
     it "should have the expected default runtime parameter values" do
       Cukesparse.parameters[:environment].should eql 'ENVIRONMENT=release'
       Cukesparse.parameters[:log_level].should eql 'LOG_LEVEL=debug'
+      Cukesparse.parameters[:cleanup].should eql 'CLEANUP=true'
+      Cukesparse.parameters[:database].should eql 'DATABASE=true'
+      Cukesparse.parameters[:jenkins].should eql 'JENKINS=true'
+      Cukesparse.parameters[:retries].should eql 'RETRIES=5'
+      Cukesparse.parameters[:timeout].should eql 'TIMEOUT=60'
+      Cukesparse.parameters[:screenwidth].should eql 'SCREENWIDTH=1280'
+      Cukesparse.parameters[:screenheight].should eql 'SCREENHEIGHT=1024'
+      Cukesparse.parameters[:xposition].should eql 'XPOSITION=0'
+      Cukesparse.parameters[:yposition].should eql 'YPOSITION=0'
+      Cukesparse.parameters[:highlight].should eql 'HIGHLIGHT=true'
+    end
+  end
+
+  context "when running the test task cucumber default vars should be set when no arguments passed" do
+    before :all do
+      # Clear arguments as rspec passes in script path
+      # Adding test tag to prevent raise
+      ARGV.push('test_task', '-t', 'test')
+      Cukesparse.parameters = {}
+      Cukesparse.configure {|c| c.config_file = './spec/spec_files/valid_tasks.yml'}
+      Cukesparse.load_config.parse_argv
+      Cukesparse.check_for_task
+      Cukesparse.check_for_parameters
+      Cukesparse.set_cucumber_defaults
+    end
+
+    it "should have cucumber default parameters" do
+      Cukesparse.parameters.should have_key :format
+      Cukesparse.parameters.should have_key :name
+      Cukesparse.parameters.should have_key :tags
+      Cukesparse.parameters.should have_key :strict
+      Cukesparse.parameters.should have_key :verbose
+      Cukesparse.parameters.should have_key :dry_run
+      Cukesparse.parameters.should have_key :guess
+      Cukesparse.parameters.should have_key :expand
+    end
+
+    it "should have the expected default runtime parameter values" do
+      Cukesparse.parameters[:format].should eql '--format pretty'
+      Cukesparse.parameters[:name].should eql ['--name feature1', '--name feature2']
+      Cukesparse.parameters[:tags].should eql ['--tags test', '--tags tags1', '--tags tags2']
+      Cukesparse.parameters[:strict].should eql '--strict'
+      Cukesparse.parameters[:verbose].should eql '--verbose'
+      Cukesparse.parameters[:dry_run].should eql '--dry-run'
+      Cukesparse.parameters[:guess].should eql '--guess'
+      Cukesparse.parameters[:expand].should eql '--expand'
     end
   end
 
   # add_multiple
-  context "when add_multiple is called" do
-    it "it will add a key to parameters with the correct array value" do
-      Cukesparse.add_multiple(:test, 'abc')
-      Cukesparse.parameters.should have_key(:test)
-      Cukesparse.parameters[:test].should eql ['--test abc']
+  context "when add_multiple is called with a single value" do
+    before do
+      Cukesparse.parameters = {}
+    end
+
+    it "will add a key to parameters with the correct array value" do
+      Cukesparse.add_multiple(:tags, 'abc')
+      Cukesparse.parameters.should have_key(:tags)
+      Cukesparse.parameters[:tags].should eql ['--tags abc']
+    end
+  end
+
+  context "when add_multiple is called with multiple values" do
+    before do
+      Cukesparse.parameters = {}
+    end
+
+    it "will add a key to parameters with the correct array values" do
+      Cukesparse.add_multiple(:tags, ['abc', 'def', 'hij'])
+      Cukesparse.parameters.should have_key(:tags)
+      Cukesparse.parameters[:tags].should eql ['--tags abc', '--tags def', '--tags hij']
     end
   end
 
   # split_parameters
   context "when split parameters sends :screen symbol with arguments" do
+    before do
+      Cukesparse.parameters = {}
+    end
+
     it "will return set a parameters screen key and value" do
-      Cukesparse.split_parameters('1024,1280', :screen)
-      Cukesparse.parameters.should have_key(:screen)
-      Cukesparse.parameters[:screen].should eql "SCREENWIDTH=1024 SCREENHEIGHT=1280"
+      Cukesparse.split_parameters('1024/1280', :screen)
+      Cukesparse.parameters.should have_key(:screenwidth)
+      Cukesparse.parameters.should have_key(:screenheight)
+      Cukesparse.parameters[:screenwidth].should eql "SCREENWIDTH=1024"
+      Cukesparse.parameters[:screenheight].should eql "SCREENHEIGHT=1280"
     end
   end
 
   context "when split parameters sends :position symbol with arguments" do
+    before do
+      Cukesparse.parameters = {}
+    end
+
     it "will return set a parameters screen key and value" do
-      Cukesparse.split_parameters('0,100', :position)
-      Cukesparse.parameters.should have_key(:position)
-      Cukesparse.parameters[:position].should eql "XPOSITION=0 YPOSITION=100"
+      Cukesparse.split_parameters('0/100', :position)
+      Cukesparse.parameters.should have_key(:xposition)
+      Cukesparse.parameters.should have_key(:yposition)
+      Cukesparse.parameters[:xposition].should eql "XPOSITION=0"
+      Cukesparse.parameters[:yposition].should eql "YPOSITION=100"
     end
   end
 
@@ -781,7 +881,7 @@ describe "cukesparse" do
       ARGV.push('test_task', 'test_task1')
       Cukesparse.configure {|c| c.config_file = './spec/spec_files/valid_tasks.yml'}
       Cukesparse.load_config
-      Cukesparse.should_receive("abort").with("\e[4;31;49mERROR: Multiple tasks have been passed!\e[0m")
+      Cukesparse.should_receive("puts").with("\e[0;33;49mWARN: Multiple tasks have been passed!\e[0m")
       Cukesparse.check_for_task
     end
   end
@@ -796,12 +896,23 @@ describe "cukesparse" do
 
   context "when CLI is run with no runtime_defaults defined" do
     it "will return a warning if no runtime_defaults are provided" do
-      ARGV.push('no_runtime_defaults')
+      ARGV.push('no_defaults')
       Cukesparse.configure {|c| c.config_file = './spec/spec_files/valid_tasks.yml'}
       Cukesparse.load_config
       Cukesparse.check_for_task
       Cukesparse.should_receive("puts").with("\e[0;33;49mWARN: The task has no runtime defaults!\e[0m")
       Cukesparse.set_runtime_defaults
+    end
+  end
+
+  context "when CLI is run with no cucumber_defaults defined" do
+    it "will return a warning if no cucumber_defaults are provided" do
+      ARGV.push('no_defaults')
+      Cukesparse.configure {|c| c.config_file = './spec/spec_files/valid_tasks.yml'}
+      Cukesparse.load_config
+      Cukesparse.check_for_task
+      Cukesparse.should_receive("puts").with("\e[0;33;49mWARN: The task has no cucumber defaults!\e[0m")
+      Cukesparse.set_cucumber_defaults
     end
   end
 
@@ -815,7 +926,7 @@ describe "cukesparse" do
   context "when CLI is run with and split paramters which over two argument" do
     it "will return a error" do
       Cukesparse.should_receive("abort").with("\e[4;31;49mERROR: You have passed to many parameters in the test command line argument!\e[0m")
-      Cukesparse.split_parameters('1024,1280,16', :test)
+      Cukesparse.split_parameters('1024/1280/16', :test)
     end
   end
 end

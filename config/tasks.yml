@@ -1,6 +1,33 @@
 test_task:
  feature_order: ['features/featureOne', 'features/featureTwo', 'features/featureThree']
+
+ # These cucumber defaults be set if not passed in from cli
+ cucumber_defaults:
+  format: 'pretty'
+  name: ['feature1', 'feature2']
+  tags: ['tags1', 'tags2']
+  strict: true
+  verbose: true
+  dry_run: true
+  guess: true
+  expand: true
+
+ # These runtime defaults be set if not passed in from cli
  runtime_defaults:
   environment: 'release'
   log_level: 'debug'
- defaults: ['--format html', '--out coverage/report.html', '--format pretty', '-P -s']
+  cleanup: true
+  database: true
+  jenkins: true
+  retries: 5
+  timeout: 60
+  screen: 1280/1024
+  screenwidth: 1280
+  screenheight: 1024
+  position: 0/0
+  xposition: 0
+  yposition: 0
+  highlight: true
+
+ # Will always be added to end of of the system command
+ defaults: ['--format html', '--out report.html', '-P -s']
