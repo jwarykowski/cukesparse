@@ -12,7 +12,7 @@ Cukesparse parses command line arguments and sets default arguments from the con
     test_task:
      feature_order: ['features/featureOne', 'features/featureTwo', 'features/featureThree']
 
-     # These cucumber defaults be set if not passed in from cli
+     # These cucumber defaults will be set if not passed in from cli
      cucumber_defaults:
       format: 'pretty'
       name: ['feature1', 'feature2']
@@ -23,7 +23,7 @@ Cukesparse parses command line arguments and sets default arguments from the con
       guess: true
       expand: true
 
-     # These runtime defaults be set if not passed in from cli
+     # These runtime defaults will be set if not passed in from cli
      runtime_defaults:
       environment: 'release'
       log_level: 'debug'
