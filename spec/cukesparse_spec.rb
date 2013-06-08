@@ -33,6 +33,21 @@ describe "cukesparse" do
     end
   end
 
+  context "when called with no argument" do
+    it "should display a cukesparse information message" do
+      Cukesparse.should_receive("puts").with("\e[0;33;49mCukesparse - a simple command line parser to pass arguments into Cucumber!\e[0m")
+      Cukesparse.execute
+    end
+  end
+
+  context "when called with the task argument" do
+    it "should display the tasks within the config file" do
+      ARGV.push('tasks')
+      Cukesparse.should_receive("puts").with("\e[0;33;49mYou have the following tasks within your config file: test_task\e[0m")
+      Cukesparse.execute
+    end
+  end
+
   # Parameters
   context "when passed the -t parameter" do
     before :all do
