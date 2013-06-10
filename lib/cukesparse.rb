@@ -1,7 +1,6 @@
 require 'clik'
 require 'colored'
 require 'yaml'
-require 'pry'
 YAML::ENGINE.yamler = 'psych'
 
 module Cukesparse
@@ -102,7 +101,7 @@ module Cukesparse
       puts @config.inspect
       puts 'DEBUG: Outputting parameters created'.yellow
       puts @parameters.inspect
-      puts 'DEBUG: Outputting commandc created'.yellow
+      puts 'DEBUG: Outputting command created'.yellow
       puts @command.join(' ')
     end
 
