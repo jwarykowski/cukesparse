@@ -135,7 +135,7 @@ You would get the following returned in the console:
     DEBUG: Outputting parameters created
     {:tags=>["--tags test"], :debug=>"DEBUG=TRUE", :format=>"--format pretty", :environment=>"ENVIRONMENT=release", :log_level=>"LOG_LEVEL=debug"}
 
-    DEBUG: Outputting commandc created
+    DEBUG: Outputting command created
     bundle exec cucumber --require features/ features/featureOne features/featureTwo features/featureThree --tags test DEBUG=TRUE --format pretty ENVIRONMENT=release LOG_LEVEL=debug --format html --out coverage/report.html -P -s
 
 ## Tests
