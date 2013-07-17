@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + "/lib/cukesparse/version"
 
 Gem::Specification.new do |s|
   s.name        = 'cukesparse'
-  s.version     = CUKESPARSE::VERSION
+  s.version     = Cukesparse::VERSION
   s.date        = '2013-07-17'
   s.summary     = 'Cukesparse - cucumber command line parser'
   s.description = 'A simple command line parser to pass arguments into Cucumber'
