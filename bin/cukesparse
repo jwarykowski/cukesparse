@@ -2,4 +2,9 @@
 require 'cukesparse'
 require 'colored'
 
-Cukesparse.execute
+begin
+  Cukesparse.execute
+rescue Interrupt
+  exit!
+  Process.kill('INT', -Process.getpgrp)
+end
