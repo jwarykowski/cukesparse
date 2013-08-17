@@ -1,7 +1,6 @@
 require 'clik'
 require 'colored'
 require 'yaml'
-YAML::ENGINE.yamler = 'psych'
 
 module Cukesparse
   class << self
