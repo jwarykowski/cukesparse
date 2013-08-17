@@ -60,9 +60,9 @@ module Cukesparse
       unless @task.empty? && @parameters.empty?
         @command.push 'bundle exec cucumber'
         @command.push '--require features/'
-        @command.push task['feature_order'].join(' ')
+        @command.push task['feature_order'].join(' ') if task.has_key? 'feature_order'
         @parameters.each { |k,v| @command.push(v) }
-        @command.push task['defaults'].join(' ')
+        @command.push task['defaults'].join(' ')  if task.has_key? 'defaults'
       end
 
       if @parameters.has_key? :debug
