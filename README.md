@@ -142,7 +142,7 @@ You would get the following returned in the console:
 ## Tests
 There are a number of unit tests which are included as part of this project which are run by rspec. Please run:
 
-      rspec spec/cukesparse_spec.rb
+      rspec spec/
 
 ## Feedback
 I would be more than happy to recieve feedback, please email me at: jonathan.chrisp@gmail.com
