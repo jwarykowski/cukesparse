@@ -232,6 +232,13 @@ module Cukesparse
         @parameters[:yposition] = "YPOSITION=#{params[1]}"
       end
     end
+
+    def reset!
+      @config     = nil
+      @parameters = {}
+      @task       = {}
+      @command    = []
+    end
   end
 
   # defaults
