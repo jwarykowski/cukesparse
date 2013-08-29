@@ -1,6 +1,7 @@
 require 'coveralls'
-Coveralls.wear!
 require 'cukesparse'
+
+Coveralls.wear!
 
 RSpec.configure do |config|
   config.color_enabled  = true
