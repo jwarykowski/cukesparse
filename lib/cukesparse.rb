@@ -36,11 +36,11 @@ module Cukesparse
       return puts "You have the following tasks within your config file: #{@config.keys.join(', ')}".yellow if argv.dup.shift == 'tasks'
 
       parse_argv
-      build_command
       check_for_task
       check_for_parameters
       set_cucumber_defaults
       set_runtime_defaults
+      build_command
     end
 
     # Builds the command line string
@@ -85,7 +85,7 @@ module Cukesparse
 
     # Loads the config file
     def load_config
-     @config = YAML.load_file @config_file
+      @config = YAML.load_file config_file
     rescue Psych::SyntaxError
       abort 'Your tasks file did not parse as expected!'.red.underline
     rescue Errno::ENOENT
