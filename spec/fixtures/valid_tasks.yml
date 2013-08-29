@@ -28,6 +28,17 @@ test_task:
 
 test_task1:
  feature_order: ['features/featureOne', 'features/featureTwo', 'features/featureThree']
+ cucumber_defaults:
+  format: 'pretty'
+ runtime_defaults:
+  environment: 'release'
+  log_level: 'debug'
+ defaults: ['--format html', '--out coverage/report.html', '-P -s']
+
+cucumber_default_unknown:
+ feature_order: ['features/featureOne', 'features/featureTwo', 'features/featureThree']
+ cucumber_defaults:
+  testing: 'pretty'
  runtime_defaults:
   environment: 'release'
   log_level: 'debug'

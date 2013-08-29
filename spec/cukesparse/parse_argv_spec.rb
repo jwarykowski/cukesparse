@@ -21,11 +21,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of tags" do
-      Cukesparse.parameters.should have_key :tags
+      Cukesparse.parameters.should have_key 'tags'
     end
 
     it "should have a tags parameter value of --tags test" do
-      Cukesparse.parameters[:tags].should eql ['--tags test']
+      Cukesparse.parameters['tags'].should eql ['--tags test']
     end
   end
 
@@ -36,11 +36,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of name" do
-      Cukesparse.parameters.should have_key :name
+      Cukesparse.parameters.should have_key 'name'
     end
 
     it "should have a name parameter value of test" do
-      Cukesparse.parameters[:name].should eql ['--name name_test']
+      Cukesparse.parameters['name'].should eql ['--name name_test']
     end
   end
 
@@ -51,11 +51,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of name" do
-      Cukesparse.parameters.should have_key :name
+      Cukesparse.parameters.should have_key 'name'
     end
 
     it "should have a name parameter value of test" do
-      Cukesparse.parameters[:name].should eql ['--name name_test']
+      Cukesparse.parameters['name'].should eql ['--name name_test']
     end
   end
 
@@ -66,11 +66,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of format" do
-      Cukesparse.parameters.should have_key :format
+      Cukesparse.parameters.should have_key 'format'
     end
 
     it "should have a tags parameter value of test" do
-      Cukesparse.parameters[:format].should eql '--format pretty'
+      Cukesparse.parameters['format'].should eql '--format pretty'
     end
   end
 
@@ -81,11 +81,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of format" do
-      Cukesparse.parameters.should have_key :format
+      Cukesparse.parameters.should have_key 'format'
     end
 
     it "should have a tags parameter value of test" do
-      Cukesparse.parameters[:format].should eql '--format pretty'
+      Cukesparse.parameters['format'].should eql '--format pretty'
     end
   end
 
@@ -97,11 +97,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of name" do
-      Cukesparse.parameters.should have_key :dry_run
+      Cukesparse.parameters.should have_key 'dry_run'
     end
 
     it "should have a dry_run parameter value of --dry-run" do
-      Cukesparse.parameters[:dry_run].should eql '--dry-run'
+      Cukesparse.parameters['dry_run'].should eql '--dry-run'
     end
   end
 
@@ -112,11 +112,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of dry_run" do
-      Cukesparse.parameters.should have_key :dry_run
+      Cukesparse.parameters.should have_key 'dry_run'
     end
 
     it "should have a dry_run parameter value of --dry-run" do
-      Cukesparse.parameters[:dry_run].should eql '--dry-run'
+      Cukesparse.parameters['dry_run'].should eql '--dry-run'
     end
   end
 
@@ -127,11 +127,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of verbose" do
-      Cukesparse.parameters.should have_key :verbose
+      Cukesparse.parameters.should have_key 'verbose'
     end
 
     it "should have a verbose parameter value of --verbose" do
-      Cukesparse.parameters[:verbose].should eql '--verbose'
+      Cukesparse.parameters['verbose'].should eql '--verbose'
     end
   end
 
@@ -142,11 +142,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of verbose" do
-      Cukesparse.parameters.should have_key :verbose
+      Cukesparse.parameters.should have_key 'verbose'
     end
 
     it "should have a verbose parameter value of --verbose" do
-      Cukesparse.parameters[:verbose].should eql '--verbose'
+      Cukesparse.parameters['verbose'].should eql '--verbose'
     end
   end
 
@@ -157,11 +157,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of strict" do
-      Cukesparse.parameters.should have_key :strict
+      Cukesparse.parameters.should have_key 'strict'
     end
 
     it "should have a strict parameter value of --strict" do
-      Cukesparse.parameters[:strict].should eql '--strict'
+      Cukesparse.parameters['strict'].should eql '--strict'
     end
   end
 
@@ -172,11 +172,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of --strict" do
-      Cukesparse.parameters.should have_key :strict
+      Cukesparse.parameters.should have_key 'strict'
     end
 
     it "should have a strict parameter value of --strict" do
-      Cukesparse.parameters[:strict].should eql '--strict'
+      Cukesparse.parameters['strict'].should eql '--strict'
     end
   end
 
@@ -187,11 +187,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of --guess" do
-      Cukesparse.parameters.should have_key :guess
+      Cukesparse.parameters.should have_key 'guess'
     end
 
     it "should have a strict parameter value of --guess" do
-      Cukesparse.parameters[:guess].should eql '--guess'
+      Cukesparse.parameters['guess'].should eql '--guess'
     end
   end
 
@@ -202,11 +202,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of --guess" do
-      Cukesparse.parameters.should have_key :guess
+      Cukesparse.parameters.should have_key 'guess'
     end
 
     it "should have a strict parameter value of --guess" do
-      Cukesparse.parameters[:guess].should eql '--guess'
+      Cukesparse.parameters['guess'].should eql '--guess'
     end
   end
 
@@ -217,11 +217,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of --expand" do
-      Cukesparse.parameters.should have_key :expand
+      Cukesparse.parameters.should have_key 'expand'
     end
 
     it "should have a strict parameter value of --expand" do
-      Cukesparse.parameters[:expand].should eql '--expand'
+      Cukesparse.parameters['expand'].should eql '--expand'
     end
   end
 
@@ -232,11 +232,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of --expand" do
-      Cukesparse.parameters.should have_key :expand
+      Cukesparse.parameters.should have_key 'expand'
     end
 
     it "should have a strict parameter value of --expand" do
-      Cukesparse.parameters[:expand].should eql '--expand'
+      Cukesparse.parameters['expand'].should eql '--expand'
     end
   end
 
@@ -247,11 +247,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of environment" do
-      Cukesparse.parameters.should have_key :environment
+      Cukesparse.parameters.should have_key 'environment'
     end
 
     it "should have a environment parameter value of ENVIRONMENT=test_environment" do
-      Cukesparse.parameters[:environment].should eql 'ENVIRONMENT=test_environment'
+      Cukesparse.parameters['environment'].should eql 'ENVIRONMENT=test_environment'
     end
   end
 
@@ -262,11 +262,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of environment" do
-      Cukesparse.parameters.should have_key :environment
+      Cukesparse.parameters.should have_key 'environment'
     end
 
     it "should have a environment parameter value of ENVIRONMENT=test_environment" do
-      Cukesparse.parameters[:environment].should eql 'ENVIRONMENT=test_environment'
+      Cukesparse.parameters['environment'].should eql 'ENVIRONMENT=test_environment'
     end
   end
 
@@ -277,11 +277,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of loglevel" do
-      Cukesparse.parameters.should have_key :log_level
+      Cukesparse.parameters.should have_key 'log_level'
     end
 
     it "should have a loglevel parameter value of LOG_LEVEL=debug" do
-      Cukesparse.parameters[:log_level].should eql 'LOG_LEVEL=debug'
+      Cukesparse.parameters['log_level'].should eql 'LOG_LEVEL=debug'
     end
   end
 
@@ -292,11 +292,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of loglevel" do
-      Cukesparse.parameters.should have_key :log_level
+      Cukesparse.parameters.should have_key 'log_level'
     end
 
     it "should have a loglevel parameter value of LOG_LEVEL=debug" do
-      Cukesparse.parameters[:log_level].should eql 'LOG_LEVEL=debug'
+      Cukesparse.parameters['log_level'].should eql 'LOG_LEVEL=debug'
     end
   end
 
@@ -307,11 +307,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of controller" do
-      Cukesparse.parameters.should have_key :controller
+      Cukesparse.parameters.should have_key 'controller'
     end
 
     it "should have a controller parameter value of CONTROLLER=browser" do
-      Cukesparse.parameters[:controller].should eql 'CONTROLLER=browser'
+      Cukesparse.parameters['controller'].should eql 'CONTROLLER=browser'
     end
   end
 
@@ -322,11 +322,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of controller" do
-      Cukesparse.parameters.should have_key :controller
+      Cukesparse.parameters.should have_key 'controller'
     end
 
     it "should have a controller parameter value of CONTROLLER=browser" do
-      Cukesparse.parameters[:controller].should eql 'CONTROLLER=browser'
+      Cukesparse.parameters['controller'].should eql 'CONTROLLER=browser'
     end
   end
 
@@ -337,11 +337,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of headless" do
-      Cukesparse.parameters.should have_key :headless
+      Cukesparse.parameters.should have_key 'headless'
     end
 
     it "should have a headless parameter value of HEADLESS=TRUE" do
-      Cukesparse.parameters[:headless].should eql 'HEADLESS=TRUE'
+      Cukesparse.parameters['headless'].should eql 'HEADLESS=TRUE'
     end
   end
 
@@ -352,11 +352,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of headless" do
-      Cukesparse.parameters.should have_key :headless
+      Cukesparse.parameters.should have_key 'headless'
     end
 
     it "should have a headless parameter value of HEADLESS=TRUE" do
-      Cukesparse.parameters[:headless].should eql 'HEADLESS=TRUE'
+      Cukesparse.parameters['headless'].should eql 'HEADLESS=TRUE'
     end
   end
 
@@ -367,11 +367,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of cleanup" do
-      Cukesparse.parameters.should have_key :cleanup
+      Cukesparse.parameters.should have_key 'cleanup'
     end
 
     it "should have a cleanup parameter value of CLEANUP=TRUE" do
-      Cukesparse.parameters[:cleanup].should eql 'CLEANUP=TRUE'
+      Cukesparse.parameters['cleanup'].should eql 'CLEANUP=TRUE'
     end
   end
 
@@ -382,11 +382,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of cleanup" do
-      Cukesparse.parameters.should have_key :cleanup
+      Cukesparse.parameters.should have_key 'cleanup'
     end
 
     it "should have a cleanup parameter value of CLEANUP=FALSE" do
-      Cukesparse.parameters[:cleanup].should eql 'CLEANUP=FALSE'
+      Cukesparse.parameters['cleanup'].should eql 'CLEANUP=FALSE'
     end
   end
 
@@ -397,11 +397,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of database" do
-      Cukesparse.parameters.should have_key :database
+      Cukesparse.parameters.should have_key 'database'
     end
 
     it "should have a database parameter value of DATABASE=TRUE" do
-      Cukesparse.parameters[:database].should eql 'DATABASE=TRUE'
+      Cukesparse.parameters['database'].should eql 'DATABASE=TRUE'
     end
   end
 
@@ -412,11 +412,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of jenkins" do
-      Cukesparse.parameters.should have_key :jenkins
+      Cukesparse.parameters.should have_key 'jenkins'
     end
 
     it "should have a jenkins parameter value of JENKINS=TRUE" do
-      Cukesparse.parameters[:jenkins].should eql 'JENKINS=TRUE'
+      Cukesparse.parameters['jenkins'].should eql 'JENKINS=TRUE'
     end
   end
 
@@ -427,11 +427,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of retries" do
-      Cukesparse.parameters.should have_key :retries
+      Cukesparse.parameters.should have_key 'retries'
     end
 
     it "should have a retries parameter value of RETRIES=5" do
-      Cukesparse.parameters[:retries].should eql 'RETRIES=5'
+      Cukesparse.parameters['retries'].should eql 'RETRIES=5'
     end
   end
 
@@ -442,11 +442,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of timeout" do
-      Cukesparse.parameters.should have_key :timeout
+      Cukesparse.parameters.should have_key 'timeout'
     end
 
     it "should have a timeout parameter value of TIMEOUT=10" do
-      Cukesparse.parameters[:timeout].should eql 'TIMEOUT=10'
+      Cukesparse.parameters['timeout'].should eql 'TIMEOUT=10'
     end
   end
 
@@ -457,19 +457,19 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of screenwidth" do
-      Cukesparse.parameters.should have_key :screenwidth
+      Cukesparse.parameters.should have_key 'screenwidth'
     end
 
     it "should have a parameter of screenheight" do
-      Cukesparse.parameters.should have_key :screenheight
+      Cukesparse.parameters.should have_key 'screenheight'
     end
 
     it "should have a screenwidth parameter value of SCREENWIDTH=1280" do
-      Cukesparse.parameters[:screenwidth].should eql 'SCREENWIDTH=1280'
+      Cukesparse.parameters['screenwidth'].should eql 'SCREENWIDTH=1280'
     end
 
     it "should have a screenheight parameter value of SCREENHEIGHT=1024" do
-      Cukesparse.parameters[:screenheight].should eql 'SCREENHEIGHT=1024'
+      Cukesparse.parameters['screenheight'].should eql 'SCREENHEIGHT=1024'
     end
   end
 
@@ -480,19 +480,19 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of xposition" do
-      Cukesparse.parameters.should have_key :xposition
+      Cukesparse.parameters.should have_key 'xposition'
     end
 
     it "should have a parameter of yposition" do
-      Cukesparse.parameters.should have_key :yposition
+      Cukesparse.parameters.should have_key 'yposition'
     end
 
     it "should have a xposition parameter value of XPOSITION=0" do
-      Cukesparse.parameters[:xposition].should eql 'XPOSITION=0'
+      Cukesparse.parameters['xposition'].should eql 'XPOSITION=0'
     end
 
     it "should have a yposition parameter value of YPOSITION=0" do
-      Cukesparse.parameters[:yposition].should eql 'YPOSITION=0'
+      Cukesparse.parameters['yposition'].should eql 'YPOSITION=0'
     end
   end
 
@@ -503,11 +503,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of screenwidth" do
-      Cukesparse.parameters.should have_key :screen_width
+      Cukesparse.parameters.should have_key 'screen_width'
     end
 
     it "should have a screenwidth parameter value of SCREENWIDTH=1280" do
-      Cukesparse.parameters[:screen_width].should eql 'SCREENWIDTH=1280'
+      Cukesparse.parameters['screen_width'].should eql 'SCREENWIDTH=1280'
     end
   end
 
@@ -518,11 +518,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of screenheight" do
-      Cukesparse.parameters.should have_key :screen_height
+      Cukesparse.parameters.should have_key 'screen_height'
     end
 
     it "should have a screenheight parameter value of SCREENHEIGHT=1024" do
-      Cukesparse.parameters[:screen_height].should eql 'SCREENHEIGHT=1024'
+      Cukesparse.parameters['screen_height'].should eql 'SCREENHEIGHT=1024'
     end
   end
 
@@ -533,11 +533,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of xposition" do
-      Cukesparse.parameters.should have_key :xposition
+      Cukesparse.parameters.should have_key 'xposition'
     end
 
     it "should have a xposition parameter value of XPOSITION=100" do
-      Cukesparse.parameters[:xposition].should eql 'XPOSITION=100'
+      Cukesparse.parameters['xposition'].should eql 'XPOSITION=100'
     end
   end
 
@@ -548,11 +548,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of yposition" do
-      Cukesparse.parameters.should have_key :yposition
+      Cukesparse.parameters.should have_key 'yposition'
     end
 
     it "should have a yposition parameter value of YPOSITION=100" do
-      Cukesparse.parameters[:yposition].should eql 'YPOSITION=100'
+      Cukesparse.parameters['yposition'].should eql 'YPOSITION=100'
     end
   end
 
@@ -563,11 +563,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of highlight" do
-      Cukesparse.parameters.should have_key :highlight
+      Cukesparse.parameters.should have_key 'highlight'
     end
 
     it "should have a highlight parameter value of HIGHLIGHT=TRUE" do
-      Cukesparse.parameters[:highlight].should eql 'HIGHLIGHT=TRUE'
+      Cukesparse.parameters['highlight'].should eql 'HIGHLIGHT=TRUE'
     end
   end
 
@@ -578,11 +578,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of highlight" do
-      Cukesparse.parameters.should have_key :highlight
+      Cukesparse.parameters.should have_key 'highlight'
     end
 
     it "should have a highlight parameter value of HIGHLIGHT=TRUE" do
-      Cukesparse.parameters[:highlight].should eql 'HIGHLIGHT=TRUE'
+      Cukesparse.parameters['highlight'].should eql 'HIGHLIGHT=TRUE'
     end
   end
 
@@ -593,11 +593,11 @@ describe '.parse_argv' do
     end
 
     it "should have a parameter of debug" do
-      Cukesparse.parameters.should have_key :debug
+      Cukesparse.parameters.should have_key 'debug'
     end
 
     it "should have a debug parameter value of DEBUG=TRUE" do
-      Cukesparse.parameters[:debug].should eql 'DEBUG=TRUE'
+      Cukesparse.parameters['debug'].should eql 'DEBUG=TRUE'
     end
   end
 end

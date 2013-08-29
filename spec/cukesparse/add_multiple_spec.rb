@@ -8,17 +8,17 @@ describe '.add_multiple' do
 
   context "when run with a single value" do
     it "will add a key to parameters with the correct array value" do
-      Cukesparse.add_multiple(:tags, 'abc')
-      Cukesparse.parameters.should have_key(:tags)
-      Cukesparse.parameters[:tags].should eql ['--tags abc']
+      Cukesparse.add_multiple('tags', 'abc')
+      Cukesparse.parameters.should have_key('tags')
+      Cukesparse.parameters['tags'].should eql ['--tags abc']
     end
   end
 
   context "when run with multiple values" do
     it "will add a key to parameters with the correct array values" do
-      Cukesparse.add_multiple(:tags, ['abc', 'def', 'hij'])
-      Cukesparse.parameters.should have_key(:tags)
-      Cukesparse.parameters[:tags].should eql ['--tags abc', '--tags def', '--tags hij']
+      Cukesparse.add_multiple('tags', ['abc', 'def', 'hij'])
+      Cukesparse.parameters.should have_key('tags')
+      Cukesparse.parameters['tags'].should eql ['--tags abc', '--tags def', '--tags hij']
     end
   end
 end
