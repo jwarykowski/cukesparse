@@ -94,51 +94,47 @@ module Cukesparse
 
     # Parses the options passed via command line
     def parse_argv
-      begin
-        cli argv,
-        # Cucumber options
-        '-t'            => lambda{ |t| add_multiple('tags', t) },
-        '-n --name'     => lambda{ |n| add_multiple('name', n) },
-        '-f --format'   => ->(f){ @parameters['format']    = "--format #{f}" },
-        '-d --dry-run'  => ->{ @parameters['dry_run']      = "--dry-run" },
-        '-v --verbose'  => ->{ @parameters['verbose']      = "--verbose" },
-        '-s --strict'   => ->{ @parameters['strict']       = "--strict" },
-        '-g --guess'    => ->{ @parameters['guess']        = "--guess" },
-        '-x --expand'   => ->{ @parameters['expand']       = "--expand" },
+      cli argv,
+      # Cucumber options
+      '-t'            => lambda{ |t| add_multiple('tags', t) },
+      '-n --name'     => lambda{ |n| add_multiple('name', n) },
+      '-f --format'   => ->(f){ @parameters['format']    = "--format #{f}" },
+      '-d --dry-run'  => ->{ @parameters['dry_run']      = "--dry-run" },
+      '-v --verbose'  => ->{ @parameters['verbose']      = "--verbose" },
+      '-s --strict'   => ->{ @parameters['strict']       = "--strict" },
+      '-g --guess'    => ->{ @parameters['guess']        = "--guess" },
+      '-x --expand'   => ->{ @parameters['expand']       = "--expand" },
 
-        # All options below have been added for custom project but can be used for example
-        # Global options
-        '-e --environment'  => ->(e){ @parameters['environment'] = "ENVIRONMENT=#{e}" },
-        '-l --loglevel'     => ->(l){ @parameters['log_level']   = "LOG_LEVEL=#{l}" },
-        '-c --controller'   => ->(c){ @parameters['controller']  = "CONTROLLER=#{c}" },
-        '-h --headless'     => ->{ @parameters['headless']       = "HEADLESS=TRUE" },
+      # All options below have been added for custom project but can be used for example
+      # Global options
+      '-e --environment'  => ->(e){ @parameters['environment'] = "ENVIRONMENT=#{e}" },
+      '-l --loglevel'     => ->(l){ @parameters['log_level']   = "LOG_LEVEL=#{l}" },
+      '-c --controller'   => ->(c){ @parameters['controller']  = "CONTROLLER=#{c}" },
+      '-h --headless'     => ->{ @parameters['headless']       = "HEADLESS=TRUE" },
 
-        # Database options
-        '--cleanup'         => ->{ @parameters['cleanup']    = "CLEANUP=TRUE" },
-        '--no-cleanup'      => ->{ @parameters['cleanup']    = "CLEANUP=FALSE" },
-        '--database'        => ->{ @parameters['database']   = "DATABASE=TRUE" },
-        '--jenkins'         => ->{ @parameters['jenkins']    = "JENKINS=TRUE" },
+      # Database options
+      '--cleanup'         => ->{ @parameters['cleanup']    = "CLEANUP=TRUE" },
+      '--no-cleanup'      => ->{ @parameters['cleanup']    = "CLEANUP=FALSE" },
+      '--database'        => ->{ @parameters['database']   = "DATABASE=TRUE" },
+      '--jenkins'         => ->{ @parameters['jenkins']    = "JENKINS=TRUE" },
 
-        # Retry options
-        '--retries'         => ->(r){ @parameters['retries'] = "RETRIES=#{r}" },
-        '--timeout'         => ->(t){ @parameters['timeout'] = "TIMEOUT=#{t}" },
+      # Retry options
+      '--retries'         => ->(r){ @parameters['retries'] = "RETRIES=#{r}" },
+      '--timeout'         => ->(t){ @parameters['timeout'] = "TIMEOUT=#{t}" },
 
-        # Driver Options
-        '--screen'          => ->(s){ split_parameters(s, 'screen') },
-        '--position'        => ->(p){ split_parameters(p, 'position') },
-        '--screenwidth'     => ->(w){ @parameters['screen_width']  = "SCREENWIDTH=#{w}" },
-        '--screenheight'    => ->(h){ @parameters['screen_height'] = "SCREENHEIGHT=#{h}" },
-        '--xposition'       => ->(x){ @parameters['xposition']     = "XPOSITION=#{x}" },
-        '--yposition'       => ->(y){ @parameters['yposition']     = "YPOSITION=#{y}" },
-        '-H --highlight'    => ->{ @parameters['highlight']        = "HIGHLIGHT=TRUE" },
+      # Driver Options
+      '--screen'          => ->(s){ split_parameters(s, 'screen') },
+      '--position'        => ->(p){ split_parameters(p, 'position') },
+      '--screenwidth'     => ->(w){ @parameters['screen_width']  = "SCREENWIDTH=#{w}" },
+      '--screenheight'    => ->(h){ @parameters['screen_height'] = "SCREENHEIGHT=#{h}" },
+      '--xposition'       => ->(x){ @parameters['xposition']     = "XPOSITION=#{x}" },
+      '--yposition'       => ->(y){ @parameters['yposition']     = "YPOSITION=#{y}" },
+      '-H --highlight'    => ->{ @parameters['highlight']        = "HIGHLIGHT=TRUE" },
 
-        # Debug
-        '--debug' => ->{ @parameters['debug']  = "DEBUG=TRUE" }
-      rescue
-        abort 'Error processing passed CLI arguments!'.red.underline
-      else
-        self
-      end
+      # Debug
+      '--debug' => ->{ @parameters['debug']  = "DEBUG=TRUE" }
+    rescue
+      abort 'Error processing passed CLI arguments!'.red.underline
     end
 
     # Updates parameters based on config runtime defaults
