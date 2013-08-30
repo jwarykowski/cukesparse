@@ -2,6 +2,7 @@
 require 'cukesparse'
 
 begin
+  Cukesparse.reset!
   Cukesparse.execute
 rescue Interrupt
   exit!
