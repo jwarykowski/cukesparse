@@ -11,7 +11,7 @@ describe '.check_for_task' do
       ARGV.push('test_task')
       Cukesparse.config_file = File.join(fixture_path, 'empty_tasks.yml')
       Cukesparse.load_config
-      Cukesparse.should_receive("abort").with("\e[4;31;49mERROR: Your tasks.yml file is empty!\e[0m")
+      Cukesparse.should_receive("abort").with("ERROR: Your tasks.yml file is empty!".red.underline)
       Cukesparse.check_for_task
     end
   end
@@ -19,7 +19,7 @@ describe '.check_for_task' do
   context "when run with no task defined" do
     it "will return an error if no task is provided" do
       ARGV.push('incorrect_task')
-      Cukesparse.should_receive("abort").with("\e[4;31;49mERROR: No task was passed to cukesparse!\e[0m")
+      Cukesparse.should_receive("abort").with("ERROR: No task was passed to cukesparse!".red.underline)
       Cukesparse.check_for_task
     end
   end
@@ -29,7 +29,7 @@ describe '.check_for_task' do
       ARGV.push('test_task', 'test_task1')
       Cukesparse.config_file = File.join(fixture_path, 'valid_tasks.yml')
       Cukesparse.load_config
-      Cukesparse.should_receive("puts").with("\e[0;33;49mWARN: Multiple tasks have been passed!\e[0m")
+      Cukesparse.should_receive("puts").with("WARN: Multiple tasks have been passed!".yellow)
       Cukesparse.check_for_task
     end
   end

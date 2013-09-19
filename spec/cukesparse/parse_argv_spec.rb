@@ -9,7 +9,7 @@ describe '.parse_argv' do
   context "when run with incorrect ARGV array" do
     it "will return an error if arguments are nil" do
       ARGV.push(nil)
-      Cukesparse.should_receive("abort").with("\e[4;31;49mError processing passed CLI arguments!\e[0m")
+      Cukesparse.should_receive("abort").with("Error processing passed CLI arguments!".red.underline)
       Cukesparse.parse_argv
     end
   end

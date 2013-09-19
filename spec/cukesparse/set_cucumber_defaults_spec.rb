@@ -12,7 +12,7 @@ describe '.set_cucumber_defaults' do
       Cukesparse.config_file = File.join(fixture_path, 'valid_tasks.yml')
       Cukesparse.load_config
       Cukesparse.check_for_task
-      Cukesparse.should_receive("puts").with("\e[0;33;49mWARN: The task has no cucumber defaults!\e[0m")
+      Cukesparse.should_receive("puts").with("WARN: The task has no cucumber defaults!".yellow)
       Cukesparse.set_cucumber_defaults
     end
   end
@@ -25,7 +25,7 @@ describe '.set_cucumber_defaults' do
       Cukesparse.parse_argv
       Cukesparse.check_for_task
       Cukesparse.check_for_parameters
-      Cukesparse.should_receive("puts").with("\e[0;33;49mWARN: The cucumber default testing isn't a known option!\e[0m")
+      Cukesparse.should_receive("puts").with("WARN: The cucumber default testing isn't a known option!".yellow)
       Cukesparse.set_cucumber_defaults
     end
   end

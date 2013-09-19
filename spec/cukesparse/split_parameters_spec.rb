@@ -28,14 +28,14 @@ describe '.split_parameters' do
 
   context "when run with one argument" do
     it "will return a you have passed enough parameters error" do
-      Cukesparse.should_receive("abort").with("\e[4;31;49mERROR: You have not passed enough parameters in the test command line argument!\e[0m")
+      Cukesparse.should_receive("abort").with("ERROR: You have not passed enough parameters in the test command line argument!".red.underline)
       Cukesparse.split_parameters('1024', 'test')
     end
   end
 
   context "when run with over two argument" do
     it "will return a you have passed to many parameters error" do
-      Cukesparse.should_receive("abort").with("\e[4;31;49mERROR: You have passed to many parameters in the test command line argument!\e[0m")
+      Cukesparse.should_receive("abort").with("ERROR: You have passed to many parameters in the test command line argument!".red.underline)
       Cukesparse.split_parameters('1024/1280/16', 'test')
     end
   end

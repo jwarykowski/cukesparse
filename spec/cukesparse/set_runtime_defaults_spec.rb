@@ -12,7 +12,7 @@ describe '.set_runtime_defaults' do
       Cukesparse.config_file = File.join(fixture_path, 'valid_tasks.yml')
       Cukesparse.load_config
       Cukesparse.check_for_task
-      Cukesparse.should_receive("puts").with("\e[0;33;49mWARN: The task has no runtime defaults!\e[0m")
+      Cukesparse.should_receive("puts").with("WARN: The task has no runtime defaults!".yellow)
       Cukesparse.set_runtime_defaults
     end
   end

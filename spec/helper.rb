@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'coveralls'
+require 'colored'
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   Coveralls::SimpleCov::Formatter,
