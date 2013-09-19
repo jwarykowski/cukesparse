@@ -6,7 +6,7 @@ rvm:
 deploy:
   provider: rubygems
   api_key:
-    secure: B1YU6D5M/6N4hxNNpBFfaVyyrn1XbaP8+D7jNVay/1xnmZJMATACocV7rqGtO62HUGWI8Z/ncoozK2NYbZLNflfNTIGrMli49DPkYsdTkAc9L50u6ti67AkunFEGuOj4cPWpb3AcgILJ4Q1XAG52KlHr/aaYdurHo5ru1wzdfw0=
+    secure: WFfPenGXelJoDQx7nxoL7CnLTVEUXLY0+SyS0umEk7+2ihm81XL5W1AcAwpyB/Zpu1tWW72vRTEo3qwiFwfPhb/McXoU2UmjAf/gzIzeaJM8Fwck9GjWYD1fxhK9ifnON4W4ix3PU9rbZPHp50yqgPpCx4Q98hhJHc6pkdJZ2TA=
   gem: cukesparse
   on:
     tags: true
