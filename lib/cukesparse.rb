@@ -53,8 +53,7 @@ module Cukesparse
       end
 
       return debug if @parameters.has_key? 'debug'
-      system @command.join(' ')
-      exit $?.exitstatus
+      exec @command.join(' ')
     end
 
     # Checks for task in arguments
