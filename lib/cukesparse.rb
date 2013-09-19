@@ -2,7 +2,6 @@ require 'clik'
 require 'colored'
 require 'yaml'
 
-
 module Cukesparse
   class << self
     attr_accessor :config_file, :config, :task, :parameters, :command
