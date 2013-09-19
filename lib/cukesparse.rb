@@ -58,7 +58,9 @@ module Cukesparse
 
     # Checks for task in arguments
     def check_for_task
+      return abort 'ERROR: Your tasks.yml file is empty!'.red.underline unless @config
       task = argv & @config.keys
+
       return abort 'ERROR: No task was passed to cukesparse!'.red.underline if task.empty?
       return puts 'WARN: Multiple tasks have been passed!'.yellow if task.length > 1
       return @task = @config[task[0]]

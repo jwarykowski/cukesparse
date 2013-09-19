@@ -6,6 +6,16 @@ describe '.check_for_task' do
     Cukesparse.reset!
   end
 
+  context "when run with task defined and empty config file" do
+    it "will return an error if config is empty" do
+      ARGV.push('test_task')
+      Cukesparse.config_file = File.join(fixture_path, 'empty_tasks.yml')
+      Cukesparse.load_config
+      Cukesparse.should_receive("abort").with("\e[4;31;49mERROR: Your tasks.yml file is empty!\e[0m")
+      Cukesparse.check_for_task
+    end
+  end
+
   context "when run with no task defined" do
     it "will return an error if no task is provided" do
       ARGV.push('incorrect_task')
