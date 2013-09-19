@@ -43,7 +43,7 @@ describe '.build_command' do
       Cukesparse.command.should_receive(:push).with("HIGHLIGHT=true").and_call_original
       Cukesparse.command.should_receive(:push).with("--format html --out coverage/report.html -P -s").and_call_original
 
-      Cukesparse.should_receive(:exec).with('bundle exec cucumber --require features/ features/featureOne features/featureTwo features/featureThree --tags test --tags tags1 --tags tags2 --format pretty --name feature1 --name feature2 --strict --verbose --dry-run --guess --expand ENVIRONMENT=release LOG_LEVEL=debug CLEANUP=true DATABASE=true JENKINS=true RETRIES=5 TIMEOUT=60 SCREENWIDTH=1280 SCREENHEIGHT=1024 XPOSITION=0 YPOSITION=0 HIGHLIGHT=true --format html --out coverage/report.html -P -s')
+      Cukesparse.should_receive(:system).with('bundle exec cucumber --require features/ features/featureOne features/featureTwo features/featureThree --tags test --tags tags1 --tags tags2 --format pretty --name feature1 --name feature2 --strict --verbose --dry-run --guess --expand ENVIRONMENT=release LOG_LEVEL=debug CLEANUP=true DATABASE=true JENKINS=true RETRIES=5 TIMEOUT=60 SCREENWIDTH=1280 SCREENHEIGHT=1024 XPOSITION=0 YPOSITION=0 HIGHLIGHT=true --format html --out coverage/report.html -P -s').and_return(true)
       Cukesparse.build_command
     end
 
