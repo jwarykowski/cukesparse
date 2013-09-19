@@ -1,6 +1,15 @@
 language: ruby
 rvm:
-  - 2.0.0
-  - 1.9.3
+- 2.0.0
+- 1.9.3
+
+deploy:
+  provider: rubygems
+  api_key:
+    secure: B1YU6D5M/6N4hxNNpBFfaVyyrn1XbaP8+D7jNVay/1xnmZJMATACocV7rqGtO62HUGWI8Z/ncoozK2NYbZLNflfNTIGrMli49DPkYsdTkAc9L50u6ti67AkunFEGuOj4cPWpb3AcgILJ4Q1XAG52KlHr/aaYdurHo5ru1wzdfw0=
+  gem: cukesparse
+  on:
+    tags: true
+    repo: jonathanchrisp/cukesparse
 
 script: bundle exec rspec
