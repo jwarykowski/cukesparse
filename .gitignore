@@ -20,3 +20,7 @@ report.html
 .yardoc
 _yardoc
 doc/
+
+# Testing Folders
+config/
+features/
