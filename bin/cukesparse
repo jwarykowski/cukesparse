@@ -1,7 +1,6 @@
 #!/usr/bin/env ruby
+
 require 'cukesparse'
 
-begin
-  Cukesparse.reset!
-  Cukesparse.execute
-end
+Cukesparse.reset!
+Cukesparse.execute

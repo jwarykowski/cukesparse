@@ -53,8 +53,15 @@ module Cukesparse
       end
 
       return debug if @parameters.has_key? 'debug'
-      result = system(@command.join(' '))
-      exit result
+
+      begin
+        result = system(@command.join(' '))
+      rescue Interrupt
+        puts 'Quitting Cucumber and Cukesparse...'
+        Process.kill('INT', -Process.getpgrp)
+      else
+        exit result
+      end
     end
 
     # Checks for task in arguments
