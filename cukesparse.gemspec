@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.name        = 'cukesparse'
   s.version     = Cukesparse::VERSION
   s.version     = Cukesparse::VERSION + ".pre.#{ENV['TRAVIS_BUILD_NUMBER']}" if ENV['TRAVIS']
-  s.date        = '2013-09-19'
+  s.date        = '2013-09-20'
   s.summary     = 'Cukesparse - cucumber command line parser'
   s.description = 'A simple command line parser to pass arguments into Cucumber'
   s.author      = 'Jonathan Chrisp'
