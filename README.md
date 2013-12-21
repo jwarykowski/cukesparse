@@ -1,3 +1,4 @@
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/jonathanchrisp/cukesparse/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 [![Gem Version](https://badge.fury.io/rb/cukesparse.png)](http://badge.fury.io/rb/cukesparse)
 [![Build Status](https://travis-ci.org/jonathanchrisp/cukesparse.png?branch=master)](https://travis-ci.org/jonathanchrisp/cukesparse)
 [![Dependency Status](https://gemnasium.com/jonathanchrisp/cukesparse.png)](https://gemnasium.com/jonathanchrisp/cukesparse)
