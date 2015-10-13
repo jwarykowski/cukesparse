@@ -4,6 +4,8 @@
 [![Dependency Status](https://gemnasium.com/jonathanchrisp/cukesparse.png)](https://gemnasium.com/jonathanchrisp/cukesparse)
 [![Coverage Status](https://coveralls.io/repos/jonathanchrisp/cukesparse/badge.png?branch=master)](https://coveralls.io/r/jonathanchrisp/cukesparse)
 
+### This repo is no longer supported - please use another tool!
+
 #cukesparse
 
 A simple command line parser to pass default and custom arguments into Cucumber with the power to define these as tasks in a config/tasks.yml file!
